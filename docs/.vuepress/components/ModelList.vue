@@ -80,6 +80,25 @@ div.mt-md
             | Try Pose
 
     .col-6
+      Window(title="Model: TensorFlow MoveNet")
+        router-link(to='/ref/model/movenent.html')
+          //- img(src='https://media2.giphy.com/media/VJ7aDV6F5id8wY2Ff0/giphy.gif')
+        p
+          router-link(to='/ref/model/movenet.html') 📚 TensorFlow MoveNet documentation
+        //- ul
+        //-   li Full body mode with 33 2D pose landmarks
+        //-   li Upper body mode with 25 2D upper pose landmarks
+        //-   li 📅 Extra helpers and plugins coming soon
+        div
+          HandsfreeToggle.full-width.handsfree-hide-when-started-without-movenet(text-off='Try MoveNet' text-on='Stop MoveNet' :opts='demo.movenet' @stop='stop("movenet")')
+          button.handsfree-show-when-started-without-movenet.handsfree-show-when-loading(disabled)
+            Fa-Spinner(spin)
+            | Loading...
+          button.handsfree-show-when-started-without-movenet.handsfree-hide-when-loading(@click='start("movenet")')
+            Fa-Video
+            | Try MoveNet
+
+    .col-6
       Window(title="Model: TensorFlow Handpose")
         router-link(to='/ref/model/weboji.html')
           img(src='https://media.giphy.com/media/Iv2aSMS0QTy2P5JNCX/source.gif')

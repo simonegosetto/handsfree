@@ -238,6 +238,28 @@ body.handsfree-started.handsfree-hide-debug .handsfree-hide-when-not-debugging {
   display: inline-block !important;
 }
 
+/* MoveNet */
+.handsfree-started .handsfree-hide-when-started-without-movenet {
+  display: none;
+}
+.handsfree-started.handsfree-model-movenet .handsfree-hide-when-started-without-movenet {
+  display: inline-block;
+}
+.handsfree-started .handsfree-show-when-started-without-movenet {
+  display: inline-block;
+}
+.handsfree-show-when-started-without-movenet,
+.handsfree-started.handsfree-model-movenet .handsfree-show-when-started-without-movenet {
+  display: none;
+}
+.handsfree-hide-when-started-without-movenet + .handsfree-show-when-loading,
+.handsfree-loading .handsfree-show-when-started-without-movenet + .handsfree-hide-when-loading {
+  display: none !important;
+}
+.handsfree-started.handsfree-loading .handsfree-hide-when-started-without-movenet + .handsfree-show-when-started-without-movenet {
+  display: inline-block !important;
+}
+
 /* Click animation */
 body.handsfree-clicked .handsfree-pointer {
   background: #ff0;

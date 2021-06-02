@@ -92,6 +92,7 @@ module.exports = {
           ['/ref/model/handpose.md', '🖐 Handpose (3D)'],
           ['/ref/model/facemesh.md', '😏 FaceMesh'],
           ['/ref/model/pose.md', '🤸‍♀️ Pose'],
+          ['/ref/model/movenet.md', '🤸‍♀️ MoveNet'],
           ['/ref/model/weboji.md', '😉 Weboji'],
         ]
       },

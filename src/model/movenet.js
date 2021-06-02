@@ -1,9 +1,9 @@
 import BaseModel from './base.js'
 
-export default class PoseModel extends BaseModel {
+export default class MovenetModel extends BaseModel {
   constructor (handsfree, config) {
     super(handsfree, config)
-    this.name = 'pose'
+    this.name = 'movenet'
 
     // Without this the loading event will happen before the first frame
     this.hasLoadedAndRun = false
@@ -11,38 +11,39 @@ export default class PoseModel extends BaseModel {
 
   loadDependencies (callback) {
     // Just load utils on client
-    if (this.handsfree.config.isClient) {
-      this.loadDependency(`${this.handsfree.config.assetsPath}/@mediapipe/drawing_utils.js`, () => {
-        this.onWarmUp(callback)
-      }, !!window.drawConnectors)
+    // if (this.handsfree.config.isClient) {
+    //   this.loadDependency(`${this.handsfree.config.assetsPath}/@mediapipe/drawing_utils.js`, () => {
+    //     this.onWarmUp(callback)
+    //   }, !!window.drawConnectors)
 
-      return
-    }
+    //   return
+    // }
 
     // Load pose
-    this.loadDependency(`${this.handsfree.config.assetsPath}/@mediapipe/pose/pose.js`, () => {
-      this.api = new window.Pose({locateFile: file => {
-        return `${this.handsfree.config.assetsPath}/@mediapipe/pose/${file}`
-      }})
-      this.api.setOptions(this.handsfree.config.pose)
-      this.api.onResults(results => this.dataReceived(results))
+    this.loadDependency(`${this.handsfree.config.assetsPath}/@tensorflow-models/pose-detection/pose-detection.js`, () => {
+      console.log('ready')
+      // this.api = new window.Pose({locateFile: file => {
+      //   return `${this.handsfree.config.assetsPath}/@mediapipe/pose/${file}`
+      // }})
+      // this.api.setOptions(this.handsfree.config.pose)
+      // this.api.onResults(results => this.dataReceived(results))
 
-      // Load the media stream
-      this.handsfree.getUserMedia(() => {
-        // Warm up before using in loop
-        if (!this.handsfree.mediapipeWarmups.isWarmingUp) {
-          this.warmUp(callback)
-        } else {
-          this.handsfree.on('mediapipeWarmedUp', () => {
-            if (!this.handsfree.mediapipeWarmups.isWarmingUp && !this.handsfree.mediapipeWarmups[this.name]) {
-              this.warmUp(callback)
-            }
-          })
-        }
-      })
+      // // Load the media stream
+      // this.handsfree.getUserMedia(() => {
+      //   // Warm up before using in loop
+      //   if (!this.handsfree.mediapipeWarmups.isWarmingUp) {
+      //     this.warmUp(callback)
+      //   } else {
+      //     this.handsfree.on('mediapipeWarmedUp', () => {
+      //       if (!this.handsfree.mediapipeWarmups.isWarmingUp && !this.handsfree.mediapipeWarmups[this.name]) {
+      //         this.warmUp(callback)
+      //       }
+      //     })
+      //   }
+      // })
 
-      // Load the hands camera module
-      this.loadDependency(`${this.handsfree.config.assetsPath}/@mediapipe/drawing_utils.js`, null, !!window.drawConnectors)
+      // // Load the hands camera module
+      // this.loadDependency(`${this.handsfree.config.assetsPath}/@mediapipe/drawing_utils.js`, null, !!window.drawConnectors)
     })
   }
 
