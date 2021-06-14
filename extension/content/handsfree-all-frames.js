@@ -3,7 +3,7 @@
  */
 handsfree = new Handsfree({
   isClient: true,
-  hands: true
+  weboji: true
 })
 handsfree.enablePlugins('browser')
 

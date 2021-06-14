@@ -57,12 +57,6 @@
     },
 
     {
-      "matches": ["https://stadia.google.com/*"],
-      "js": ["/extension/sites/stadia.google.com/stadia.js"],
-      "run_at": "document_end"
-    },
-
-    {
       "matches": ["https://teropa.info/musicmouse/*"],
       "js": ["/extension/sites/musicmouse/musicmouse.js"],
       "run_at": "document_end"
@@ -71,6 +65,12 @@
     {
       "matches": ["https://sm64.gitlab.io/*"],
       "js": ["/extension/sites/sm64.gitlab.io/sm64.js"],
+      "run_at": "document_end"
+    },
+
+    {
+      "matches": ["https://stadia.google.com/*"],
+      "js": ["/extension/sites/stadia.google.com/avicci-invector.js"],
       "run_at": "document_end"
     }
   ],
