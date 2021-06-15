@@ -826,8 +826,15 @@ class Handsfree {
    * @param {String|DOM} targets (Optional) The element to target. Accepts a CSS string or DOM. Defaults to document.body
    * @param {String} eventName The name of the event ('keydown', 'keyup', 'click')
    * @param {String|Object} opts A set of options
+   * 
+   * @return Returns the triggered event
    */
   trigger (targets, eventName, opts) {
+    const eventTypes = {
+      KeyboardEvent: ['keydown', 'keyup'],
+      MouseEvent: ['click', 'dbclick', 'mouseup', 'mousedown']
+    }
+    
     if (typeof targets === 'string') {
       targets = document.querySelectorAll(targets)
     }
@@ -835,8 +842,33 @@ class Handsfree {
       targets = [targets]
     }
 
-    console.log(targets)
-    return targets
+    // See if the event is a default browser event
+    let browserApi = 'handsfree-trigger'
+    for (let eventType in eventTypes) {
+      if (Object.prototype.hasOwnProperty.call(eventTypes, eventType)) {
+        if (eventTypes[eventType].includes(eventName)) {
+          browserApi = eventType
+          break
+        }
+      }
+    }
+
+    // Create event
+    let ev
+    switch (browserApi) {
+      case 'KeyboardEvent':
+        ev = new KeyboardEvent(eventName, opts)
+        break
+      default:
+        ev = new CustomEvent(browserApi, opts)
+    }
+
+    // Dispatch keys
+    targets.forEach(target => {
+      target?.[0]?.dispatchEvent(ev)
+    })
+    
+    return ev
   }
 
 
