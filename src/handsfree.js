@@ -829,12 +829,13 @@ class Handsfree {
    * 
    * @return Returns the triggered event
    */
-  trigger (targets, eventName, opts) {
+  trigger (targets, eventName, opts = {}) {
     const eventTypes = {
       KeyboardEvent: ['keydown', 'keyup'],
       MouseEvent: ['click', 'dbclick', 'mouseup', 'mousedown']
     }
     
+    // Defaults
     if (typeof targets === 'string') {
       targets = document.querySelectorAll(targets)
     }
@@ -858,6 +859,9 @@ class Handsfree {
     switch (browserApi) {
       case 'KeyboardEvent':
         ev = new KeyboardEvent(eventName, opts)
+        break
+      case 'MouseEvent':
+        ev = new MouseEvent(eventName, opts)
         break
       default:
         ev = new CustomEvent(browserApi, opts)
