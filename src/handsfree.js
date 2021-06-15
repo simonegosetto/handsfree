@@ -829,7 +829,7 @@ class Handsfree {
    * 
    * @return Returns the triggered event
    */
-  trigger (targets, eventName, opts = {}) {
+  trigger (targets, eventName, opts) {
     const eventTypes = {
       KeyboardEvent: ['keydown', 'keyup'],
       MouseEvent: ['click', 'dbclick', 'mouseup', 'mousedown']
@@ -841,6 +841,9 @@ class Handsfree {
     }
     if (typeof targets !== 'array') {
       targets = [targets]
+    }
+    if (!opts) {
+      opts = {}
     }
 
     // See if the event is a default browser event
@@ -855,6 +858,10 @@ class Handsfree {
     }
 
     // Create event
+    opts = Object.assign({
+      bubbles: true,
+      cancelable: true
+    }, opts)
     let ev
     switch (browserApi) {
       case 'KeyboardEvent':
@@ -868,8 +875,8 @@ class Handsfree {
     }
 
     // Dispatch keys
-    targets.forEach(target => {
-      target?.[0]?.dispatchEvent(ev)
+    targets?.[0]?.forEach(target => {
+      target?.dispatchEvent(ev)
     })
     
     return ev
