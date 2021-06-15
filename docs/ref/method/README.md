@@ -25,6 +25,7 @@ handsfree.start()
 - [.start()](/ref/method/start/) - Starts the [main loop](/guide/the-loop/) and begins tracking
 - [.stop()](/ref/method/stop/) - Stops the [main loop](/guide/the-loop/) and tracking
 - [.throttle()](/ref/method/throttle/) - An alias to [lodash.throttle](https://lodash.com/docs/4.17.15#throttle) function which is used to throttle (or limit the number of times) the passed function is called over a given amount of milliseconds
+- [.trigger()](/ref/method/trigger/) - A helper for quickly dispatching mouse and keyboard events to specific elements
 - [.TweenMax()](/ref/method/TweenMax/) - An alias to [gsap's TweenMax](https://greensock.com/tweenmax/) function which is used to tween (or smoothen) values over time
 - [.unpause()](/ref/method/unpause/) - Unpauses the main loop
 - [.update()](/ref/method/update/) - Updates your `handsfree.config` and loads any missing dependencies

@@ -169,6 +169,7 @@ module.exports = {
               ['/ref/method/start.md', '.start()'],
               ['/ref/method/stop.md', '.stop()'],
               ['/ref/method/throttle.md', '.throttle()'],
+              ['/ref/method/trigger.md', '.trigger()'],
               ['/ref/method/TweenMax.md', '.TweenMax()'],
               ['/ref/method/update.md', '.update()'],
               ['/ref/method/unpause.md', '.unpause()'],

@@ -820,6 +820,26 @@ class Handsfree {
     })    
   }
 
+  /**
+   * Trigger a browser event
+   * 
+   * @param {String|DOM} targets (Optional) The element to target. Accepts a CSS string or DOM. Defaults to document.body
+   * @param {String} eventName The name of the event ('keydown', 'keyup', 'click')
+   * @param {String|Object} opts A set of options
+   */
+  trigger (targets, eventName, opts) {
+    if (typeof targets === 'string') {
+      targets = document.querySelectorAll(targets)
+    }
+    if (typeof targets !== 'array') {
+      targets = [targets]
+    }
+
+    console.log(targets)
+    return targets
+  }
+
+
 
 /* //////////////////////// #7 DEBUGGER ////////////////////////
 
