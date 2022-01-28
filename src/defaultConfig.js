@@ -68,7 +68,11 @@ export default {
       // The element to put the video and canvas inside of
       $el: null,
       // The parent element
-      $parent: null
+      $parent: null,
+      // Width of the he canvas elements and keypoints for all model
+      width: null,
+      // height of the he canvas elements and keypoints for all model
+      height: null
     }
   },
 

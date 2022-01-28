@@ -212,6 +212,29 @@ class Handsfree {
       config.handpose = {enabled: config.handpose}
     }
 
+    // Map setup width - height
+    config.setup && config.setup.wrap && Object.keys(defaults.setup.canvas).forEach(model => {
+      if (!config.setup.canvas) {
+        config.setup.canvas = {};
+      }
+      if (!config.setup.canvas[model]) {
+        const {$el} = defaults.setup.canvas[model];
+        config.setup.canvas[model] = {$el, width: null, height: null};
+      }
+      config.setup.canvas[model] = {
+        $el: config.setup?.canvas[model]?.$el || null,
+        width: config.setup?.canvas[model]?.width ?? config.setup.wrap.width ?? defaults.setup.canvas[model].width,
+        height: config.setup?.canvas[model]?.height ?? config.setup.wrap.height ?? defaults.setup.canvas[model].height
+      }
+    })
+
+    // video
+    if (config.setup && config.setup.wrap) {
+      config.setup.video = config.setup.video || defaults.setup.video;
+      config.setup.video.width = config.setup.wrap.width ?? config.setup.video.width;
+      config.setup.video.height = config.setup.wrap.height ?? config.setup.video.height;
+    }
+
     // Map plugin booleans to objects
     config.plugin && Object.keys(config.plugin).forEach(plugin => {
       if (typeof config.plugin[plugin] === 'boolean') {
